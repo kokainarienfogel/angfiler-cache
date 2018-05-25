@@ -1,0 +1,21 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div>
+  <header>
+    <mat-toolbar class="mat-primary">
+      <!-- Title -->
+      <button class="menu-button" mat-button (click)="sidenav.toggle()"><mat-icon>menu</mat-icon></button>File Explorer
+      <!-- Add spacer, to align navigation to the right -->
+    </mat-toolbar>
+  </header>
+      <!-- Navigation. We hide it in small screens. -->
+      <mat-sidenav-container>
+        <mat-sidenav #sidenav mode="side" class="mat-background-accent">
+          <button mat-button>Link 1</button>
+        </mat-sidenav>
+        <mat-sidenav-content>
+          <app-files></app-files>
+        </mat-sidenav-content>
+      </mat-sidenav-container>
+
+
+

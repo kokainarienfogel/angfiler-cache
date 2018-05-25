@@ -1,0 +1,33 @@
+
+<div *ngIf="tree">
+
+  {{tree.name}}
+
+  <mat-card class="fileTable">
+    <mat-table #table [dataSource]="tree.children">
+    <ng-container matColumnDef="pinned">
+      <mat-header-cell *matHeaderCellDef>Pinned</mat-header-cell>
+      <mat-cell *matCellDef="let element"><mat-checkbox></mat-checkbox></mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="name" class="nameCol">
+      <mat-header-cell *matHeaderCellDef>File Name</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{element.name}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="last_modified">
+      <mat-header-cell *matHeaderCellDef>Last Modified</mat-header-cell>
+      <mat-cell *matCellDef="let element"> </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="size">
+      <mat-header-cell *matHeaderCellDef>Size</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{element.size}}</mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+  </mat-card>
+</div>
+
+
+
+

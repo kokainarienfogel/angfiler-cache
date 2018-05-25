@@ -1,0 +1,7 @@
+.fileTable {
+  max-width:1000px
+}
+
+mat-cell {
+  overflow:visible
+}
