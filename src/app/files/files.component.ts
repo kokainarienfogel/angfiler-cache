@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {FileService} from './file.service';
-import {Tree} from './file';
+import {File2, Tree} from './file';
 import {SettingsService} from '../common/settings.service';
+import {DirectoryDialogComponent} from './file-detail/directory-dialog.component';
+import {MatDialog, MatDialogRef} from '@angular/material';
 
 @Component({
   selector: 'app-files',
@@ -15,11 +17,13 @@ export class FilesComponent implements OnInit {
 
   constructor(
     private fileService: FileService,
-    private settingService: SettingsService
+    private settingService: SettingsService,
+    public dialog: MatDialog
   ) { }
 
   ngOnInit() {
     this.refresh();
+
   }
 
   refresh() {
@@ -35,5 +39,12 @@ export class FilesComponent implements OnInit {
     if (num < 10485760) return Math.round(num / 1024) + ' kiB';
     if (num < 10737418240) return Math.round(num / 1048576) + ' MiB';
     return Math.round(num / 10737418240) + ' GiB';
+  }
+
+  openFileDialog(file: File2) {
+    let dialogRef = this.dialog.open(DirectoryDialogComponent, {data: file});
+  }
+
+  closeDialog() {
   }
 }

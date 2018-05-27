@@ -13,12 +13,13 @@ import {MessageService} from './messages/message.service';
 import {FileService} from './files/file.service';
 import {SettingsService} from './common/settings.service';
 import {
-  MatButtonModule, MatCardModule, MatCheckboxModule, MatIconModule, MatSidenavModule, MatTableModule,
+  MatButtonModule, MatCardModule, MatCheckboxModule, MatDialogModule, MatIconModule, MatSidenavModule, MatTableModule,
   MatToolbarModule
 } from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {RouterModule, Routes} from '@angular/router';
 import { AboutComponent } from './about/about.component';
+import { DirectoryDialogComponent } from './files/file-detail/directory-dialog.component';
 
 const appRoutes: Routes = [
   { path: 'about', component: AboutComponent },
@@ -31,7 +32,8 @@ const appRoutes: Routes = [
     AppComponent,
     MessagesComponent,
     FilesComponent,
-    AboutComponent
+    AboutComponent,
+    DirectoryDialogComponent
   ],
   imports: [
     RouterModule,
@@ -43,6 +45,7 @@ const appRoutes: Routes = [
     MatButtonModule,
     MatCardModule,
     MatCheckboxModule,
+    MatDialogModule,
     MatIconModule,
     MatSidenavModule,
     MatTableModule,
@@ -52,6 +55,9 @@ const appRoutes: Routes = [
     MessageService,
     SettingsService,
     FileService
+  ],
+  entryComponents: [
+    DirectoryDialogComponent
   ],
   bootstrap: [AppComponent]
 })

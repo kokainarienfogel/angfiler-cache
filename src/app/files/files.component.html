@@ -11,11 +11,11 @@
     </ng-container>
     <ng-container matColumnDef="name" class="nameCol">
       <mat-header-cell *matHeaderCellDef>File Name</mat-header-cell>
-      <mat-cell *matCellDef="let element">{{element.name}}</mat-cell>
+      <mat-cell *matCellDef="let element"><a (click)="openFileDialog()">{{element.name}}</a></mat-cell>
     </ng-container>
     <ng-container matColumnDef="last_modified">
       <mat-header-cell *matHeaderCellDef>Last Modified</mat-header-cell>
-      <mat-cell *matCellDef="let element"> </mat-cell>
+      <mat-cell *matCellDef="let element"></mat-cell>
     </ng-container>
     <ng-container matColumnDef="size">
       <mat-header-cell *matHeaderCellDef>Size</mat-header-cell>
