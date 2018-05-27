@@ -17,14 +17,25 @@ import {
   MatToolbarModule
 } from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {RouterModule, Routes} from '@angular/router';
+import { AboutComponent } from './about/about.component';
+
+const appRoutes: Routes = [
+  { path: 'about', component: AboutComponent },
+  { path: 'app', component: FilesComponent },
+  { path: '', redirectTo: 'app', pathMatch: 'full' }
+];
 
 @NgModule({
   declarations: [
     AppComponent,
     MessagesComponent,
-    FilesComponent
+    FilesComponent,
+    AboutComponent
   ],
   imports: [
+    RouterModule,
+    RouterModule.forRoot(appRoutes),
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,

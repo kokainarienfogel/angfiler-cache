@@ -29,4 +29,11 @@ export class FilesComponent implements OnInit {
       this.loading = false;
     }, 1000);
   }
+
+  format(num: number) {
+    if (num < 10240) return num + ' B';
+    if (num < 10485760) return Math.round(num / 1024) + ' kiB';
+    if (num < 10737418240) return Math.round(num / 1048576) + ' MiB';
+    return Math.round(num / 10737418240) + ' GiB';
+  }
 }

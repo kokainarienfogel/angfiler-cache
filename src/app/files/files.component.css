@@ -5,3 +5,7 @@
 mat-cell {
   overflow:visible
 }
+
+.pin-column {
+  max-width:50px
+}
