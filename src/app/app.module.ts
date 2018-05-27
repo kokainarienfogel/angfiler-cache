@@ -13,18 +13,31 @@ import {MessageService} from './messages/message.service';
 import {FileService} from './files/file.service';
 import {SettingsService} from './common/settings.service';
 import {
-  MatButtonModule, MatCardModule, MatCheckboxModule, MatIconModule, MatSidenavModule, MatTableModule,
+  MatButtonModule, MatCardModule, MatCheckboxModule, MatDialogModule, MatIconModule, MatSidenavModule, MatTableModule,
   MatToolbarModule
 } from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {RouterModule, Routes} from '@angular/router';
+import { AboutComponent } from './about/about.component';
+import { DirectoryDialogComponent } from './files/file-detail/directory-dialog.component';
+
+const appRoutes: Routes = [
+  { path: 'about', component: AboutComponent },
+  { path: 'app', component: FilesComponent },
+  { path: '', redirectTo: 'app', pathMatch: 'full' }
+];
 
 @NgModule({
   declarations: [
     AppComponent,
     MessagesComponent,
-    FilesComponent
+    FilesComponent,
+    AboutComponent,
+    DirectoryDialogComponent
   ],
   imports: [
+    RouterModule,
+    RouterModule.forRoot(appRoutes),
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
@@ -32,6 +45,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     MatButtonModule,
     MatCardModule,
     MatCheckboxModule,
+    MatDialogModule,
     MatIconModule,
     MatSidenavModule,
     MatTableModule,
@@ -41,6 +55,9 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     MessageService,
     SettingsService,
     FileService
+  ],
+  entryComponents: [
+    DirectoryDialogComponent
   ],
   bootstrap: [AppComponent]
 })
