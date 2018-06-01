@@ -34,6 +34,14 @@ export class FileService {
       );
   }
 
+  /*downloadFile(hash: string) {
+    let file;
+    this.http.get(this.settingService.apiFilePath + hash).subscribe(x => {
+      file = new Blob(x);
+    });
+    let url = window.open()
+  }*/
+
   /**
    * Handle Http operation that failed.
    * Let the app continue.

@@ -1,0 +1,17 @@
+.mainContainer {
+  height:200px;
+}
+
+.path {
+  height:110px;
+}
+
+.downloadButton {
+  margin:10px;
+  float:right;
+}
+
+.closeButton {
+  margin:10px;
+  float:left;
+}
