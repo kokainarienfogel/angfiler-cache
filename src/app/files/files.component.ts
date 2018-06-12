@@ -45,6 +45,9 @@ export class FilesComponent implements OnInit {
     const dialogRef = this.dialog.open(DetailComponent, {data: file});
   }
 
-  closeDialog() {
+  pinFile(hash: string) {
+    caches.open('filesync-' + hash).then(cache => {
+      cache.add(this.settingService.apiFilePath + hash);
+    });
   }
 }
