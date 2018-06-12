@@ -5,7 +5,7 @@
     <mat-table #table [dataSource]="tree.children">
     <ng-container matColumnDef="pinned">
       <mat-header-cell *matHeaderCellDef class="pin-column">Pin</mat-header-cell>
-      <mat-cell *matCellDef="let element" class="pin-column"><mat-checkbox></mat-checkbox></mat-cell>
+      <mat-cell *matCellDef="let element" class="pin-column"><mat-checkbox [(ngModel)]="element.pinned"></mat-checkbox></mat-cell>
     </ng-container>
     <ng-container matColumnDef="name" class="nameCol">
       <mat-header-cell *matHeaderCellDef>File Name</mat-header-cell>
