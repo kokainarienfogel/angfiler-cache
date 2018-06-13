@@ -1,0 +1,10 @@
+<div class="mainContainer">
+  <h1 mat-dialog-title>{{data.name}}</h1>
+  <mat-dialog-content>
+    <div class="path">Entire Path:&nbsp;{{data.actualFile}}</div>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button mat-raised-button mat-dialog-close>Close</button>
+    <a mat-raised-button mat-dialog-close href="{{settingsService.apiFilePath}}{{data.hash}}" target="_blank">Open File</a>
+  </mat-dialog-actions>
+</div>

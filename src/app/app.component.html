@@ -1,19 +1,17 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div>
   <header>
-    <mat-toolbar class="mat-primary">
+    <mat-toolbar class="mat-primary" style="padding:0">
       <!-- Title -->
-      <button class="menu-button" mat-button (click)="sidenav.toggle()"><mat-icon>menu</mat-icon></button>File Explorer
-      <!-- Add spacer, to align navigation to the right -->
+      <button class="menuButton" mat-icon-button (click)="sidenav.toggle()"><mat-icon>menu</mat-icon></button>File Sync
+      <span class="uni-label">Johannes Kepler Universität Linz</span>
     </mat-toolbar>
   </header>
       <!-- Navigation. We hide it in small screens. -->
       <mat-sidenav-container>
-        <mat-sidenav #sidenav mode="side" class="mat-background-accent">
-          <ul>
-            <li><button mat-button routerLink="/app">App</button></li>
-            <li><button mat-button routerLink="/about">About</button></li>
-          </ul>
+        <mat-sidenav #sidenav mode="side">
+          <button mat-button routerLink="/">App</button>
+          <button mat-button routerLink="/about">About</button>
         </mat-sidenav>
         <mat-sidenav-content>
           <router-outlet></router-outlet>

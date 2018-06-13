@@ -19,12 +19,12 @@ import {
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {RouterModule, Routes} from '@angular/router';
 import { AboutComponent } from './about/about.component';
-import { DirectoryDialogComponent } from './files/file-detail/directory-dialog.component';
+import { DetailComponent } from './files/file-detail/detail.component';
+import {FormsModule} from '@angular/forms';
 
 const appRoutes: Routes = [
   { path: 'about', component: AboutComponent },
-  { path: 'app', component: FilesComponent },
-  { path: '', redirectTo: 'app', pathMatch: 'full' }
+  { path: '', component: FilesComponent }
 ];
 
 @NgModule({
@@ -33,13 +33,14 @@ const appRoutes: Routes = [
     MessagesComponent,
     FilesComponent,
     AboutComponent,
-    DirectoryDialogComponent
+    DetailComponent
   ],
   imports: [
     RouterModule,
     RouterModule.forRoot(appRoutes),
     BrowserModule,
     BrowserAnimationsModule,
+    FormsModule,
     HttpClientModule,
     ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production }),
     MatButtonModule,
@@ -57,7 +58,7 @@ const appRoutes: Routes = [
     FileService
   ],
   entryComponents: [
-    DirectoryDialogComponent
+    DetailComponent
   ],
   bootstrap: [AppComponent]
 })
