@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {SettingsService} from '../common/settings.service';
-import {MessageService} from '../messages/message.service';
 import {Observable} from 'rxjs/Observable';
 import {catchError, tap} from 'rxjs/operators';
 import { of } from 'rxjs/observable/of';
@@ -20,17 +19,13 @@ export class FileService {
 
   constructor(
     private http: HttpClient,
-    private messageService: MessageService,
     private settingService: SettingsService,
   ) { }
 
-  /** GET users from the server */
-  getFiles (): Observable<Tree[]> {
-    this.messageService.add(this.settingService.filesUrl);
-    return this.http.get<Tree[]>(this.settingService.filesUrl)
+  getFiles (): Observable<Tree> {
+    return this.http.get<Tree>(this.settingService.filesUrl)
       .pipe(
-        tap(files => this.log(`fetched files`)),
-        catchError(this.handleError('getFiles', []))
+        catchError(this.handleError('getFiles', new Tree()))
       );
   }
 
@@ -54,16 +49,8 @@ export class FileService {
       // TODO: send the error to remote logging infrastructure
       console.error(error); // log to console instead
 
-      // TODO: better job of transforming error for user consumption
-      this.log(`${operation} failed: ${error.message}`);
-
       // Let the app keep running by returning an empty result.
       return of(result as T);
     };
-  }
-
-  /** Log a HeroService message with the MessageService */
-  private log(message: string) {
-    this.messageService.add('FileService: ' + message);
   }
 }

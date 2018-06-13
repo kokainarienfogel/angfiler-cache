@@ -6,10 +6,8 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { AppComponent } from './app.component';
 
 import { environment } from '../environments/environment';
-import { MessagesComponent } from './messages/messages.component';
 import { FilesComponent } from './files/files.component';
 import {HttpClientModule} from '@angular/common/http';
-import {MessageService} from './messages/message.service';
 import {FileService} from './files/file.service';
 import {SettingsService} from './common/settings.service';
 import {
@@ -30,7 +28,6 @@ const appRoutes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    MessagesComponent,
     FilesComponent,
     AboutComponent,
     DetailComponent
@@ -53,7 +50,6 @@ const appRoutes: Routes = [
     MatToolbarModule
   ],
   providers: [
-    MessageService,
     SettingsService,
     FileService
   ],

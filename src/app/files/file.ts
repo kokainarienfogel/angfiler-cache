@@ -1,5 +1,7 @@
+export type TreeChild = Tree | File2;
+
 export class Tree {
-  children: File2;
+  children: TreeChild[];
   name: string;
 }
 
