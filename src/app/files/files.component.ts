@@ -68,7 +68,6 @@ export class FilesComponent implements OnInit {
   }
 
   pinFile(hash: string) {
-
     this.localStorage.getItem(hash).subscribe(data => {
       if (data == null) {
         this.http.get(this.settingService.apiFilePath + hash, {responseType: "blob"}).subscribe(x => {

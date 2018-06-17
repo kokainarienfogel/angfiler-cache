@@ -15,10 +15,10 @@ import {
   MatToolbarModule
 } from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {RouterModule, Routes} from '@angular/router';
 import { AboutComponent } from './about/about.component';
 import { DetailComponent } from './files/file-detail/detail.component';
 import {FormsModule} from '@angular/forms';
+import {RouterModule, Routes} from '@angular/router';
 
 const appRoutes: Routes = [
   { path: 'about', component: AboutComponent },
