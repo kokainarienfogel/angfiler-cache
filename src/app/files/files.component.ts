@@ -7,6 +7,7 @@ import {MatDialog, MatDialogRef} from '@angular/material';
 import { LocalStorage } from '@ngx-pwa/local-storage';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {map} from 'rxjs/operator/map';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-files',
@@ -15,21 +16,29 @@ import {map} from 'rxjs/operator/map';
 })
 export class FilesComponent implements OnInit {
   tree: Tree;
-  displayedColumns = ['pinned', 'name', 'last_modified', 'size'];
+  displayedColumns = ['pinned', 'name', 'size'];
   loading: boolean;
 
   constructor(
     private http: HttpClient,
     private fileService: FileService,
     private settingService: SettingsService,
-    protected localStorage: LocalStorage, 
-    public dialog: MatDialog
+    protected localStorage: LocalStorage,
+    public dialog: MatDialog,
+    private router: Router
   ) { }
 
   ngOnInit() {
-    this.refresh();
+    if (this.settingService.serverPath === '') {
+      this.router.navigate(['/about']);
+    } else {
+      this.refresh();
+    }
   }
 
+  /**
+   * Refreshes the file table by querying the service worker and in case re-loading the file metadata
+   */
   refresh() {
     this.loading = true;
     setTimeout(() => {
@@ -42,6 +51,11 @@ export class FilesComponent implements OnInit {
 
   }
 
+  /**
+   * Checks, whether a file or directory is pinned and writes the result into the object's pinned property
+   * so the template knows the state and can correctly render the checkbox.
+   * @param {Tree | File2} item
+   */
   checkPinState(item: Tree | File2) {
     if ((<Tree>item).children) {
       for (let child of (<Tree>item).children) {
@@ -52,10 +66,16 @@ export class FilesComponent implements OnInit {
         if(data != null) {
           (<File2>item).pinned = true;
         }
-      })
+      });
     }
   }
 
+  /**
+   * Method for displaying file sizes. Converts the original file size (Bytes) into kiB, MiB or GiB,
+   * with up to 4 spaces before the decimal point. Not static because of accessibility through template.
+   * @param {number} num: File Size in Bytes
+   * @returns {string}: File Size as more readable number incl. unit symbol
+   */
   format(num: number) {
     if (num < 10240) { return num + ' B'; }
     if (num < 10485760) { return Math.round(num / 1024) + ' kiB'; }
@@ -67,12 +87,16 @@ export class FilesComponent implements OnInit {
     const dialogRef = this.dialog.open(DetailComponent, {data: file});
   }
 
+  /**
+   * Toggles the "pinned" state of a file, meaning its addition to or removal from the cache.
+   * @param {string} hash: The hash of the file to pin or unpin
+   */
   pinFile(hash: string) {
     this.localStorage.getItem(hash).subscribe(data => {
       if (data == null) {
         this.http.get(this.settingService.apiFilePath + hash, {responseType: "blob"}).subscribe(x => {
           this.localStorage.setItem(hash, x).subscribe(() => {});
-        });        
+        });
       } else {
         this.localStorage.removeItem(hash).subscribe(() => {});
       }

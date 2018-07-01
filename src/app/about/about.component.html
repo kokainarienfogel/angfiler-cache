@@ -2,10 +2,15 @@
   <img class="jku-logo" src="../../assets/jku-logo.png">
     <h1>About this Application</h1>
     <div class="about">
+      Currently connected to server at &nbsp;<label class="server-path">
+        <input class="server-path" [(ngModel)]="settingsService.serverPath" (change)="settingsService.refreshPath()">
+      </label><br/><br/>
       This application has been created by three students of the JKU - Johannes Kepler University Linz at its Institute
       of Business Informatics - Communications Engineering.<br/><br/>
 
       <a href="http://www.jku.at">www.jku.at</a><br/>
-      <a href="http://www.ce.jku.at">www.ce.jku.at</a>
+      <a href="http://www.ce.jku.at">www.ce.jku.at</a><br/><br/>
+
+      You can find the documentation blog at <a href="https://www.webcess.at/cekt" target="_blank">webcess.at/cekt</a><br/>
     </div>
 </mat-card>

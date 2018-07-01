@@ -23,6 +23,7 @@ export class FileService {
   ) { }
 
   getFiles (): Observable<Tree> {
+    console.log(this.settingService.filesUrl);
     return this.http.get<Tree>(this.settingService.filesUrl)
       .pipe(
         catchError(this.handleError('getFiles', new Tree()))
